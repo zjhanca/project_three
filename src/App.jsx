@@ -37,20 +37,22 @@ const initialState = {
   todos: []
 };
 
-// Styles object for inline CSS
+// Futuristic styles with blue-white theme
 const styles = {
   container: {
     minHeight: '100vh',
-    backgroundColor: '#f8fafc',
-    fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif'
+    background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 100%)',
+    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
+    color: '#e2e8f0'
   },
   nav: {
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    background: 'rgba(15, 23, 42, 0.8)',
     backdropFilter: 'blur(20px)',
-    borderBottom: '1px solid #e5e7eb',
+    borderBottom: '1px solid rgba(59, 130, 246, 0.3)',
     position: 'sticky',
     top: 0,
-    zIndex: 50
+    zIndex: 50,
+    boxShadow: '0 4px 32px rgba(59, 130, 246, 0.1)'
   },
   navContainer: {
     maxWidth: '72rem',
@@ -62,42 +64,52 @@ const styles = {
     height: '4rem'
   },
   navTitle: {
-    fontSize: '1.25rem',
+    fontSize: '1.5rem',
     fontWeight: '700',
-    color: '#111827',
-    margin: 0
+    background: 'linear-gradient(135deg, #60a5fa, #3b82f6, #1d4ed8)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    margin: 0,
+    textShadow: '0 0 20px rgba(59, 130, 246, 0.3)'
   },
   navButtons: {
     display: 'flex',
-    gap: '2rem',
+    gap: '1rem',
     '@media (max-width: 768px)': {
       display: 'none'
     }
   },
   navButton: {
-    color: '#6b7280',
+    color: '#94a3b8',
     fontWeight: '500',
     fontSize: '0.875rem',
-    padding: '0.75rem 1rem',
-    border: 'none',
-    background: 'transparent',
+    padding: '0.75rem 1.25rem',
+    border: '1px solid rgba(59, 130, 246, 0.2)',
+    background: 'rgba(59, 130, 246, 0.05)',
     cursor: 'pointer',
-    borderRadius: '0.5rem',
-    transition: 'all 0.2s ease',
-    textDecoration: 'none'
+    borderRadius: '0.75rem',
+    transition: 'all 0.3s ease',
+    textDecoration: 'none',
+    position: 'relative',
+    overflow: 'hidden'
   },
   navButtonActive: {
-    color: '#4f46e5',
-    backgroundColor: 'rgba(79, 70, 229, 0.1)',
-    fontWeight: '600'
+    color: '#ffffff',
+    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+    borderColor: '#3b82f6',
+    boxShadow: '0 0 20px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+    fontWeight: '600',
+    WebkitTextFillColor: '#ffffff',
+    textFillColor: '#ffffff'
   },
   select: {
-    border: '1px solid #e5e7eb',
-    borderRadius: '0.5rem',
+    border: '1px solid rgba(59, 130, 246, 0.3)',
+    borderRadius: '0.75rem',
     padding: '0.5rem 0.75rem',
     fontSize: '0.875rem',
-    backgroundColor: '#ffffff',
-    color: '#374151',
+    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+    color: '#e2e8f0',
     cursor: 'pointer',
     display: 'none',
     '@media (max-width: 768px)': {
@@ -112,9 +124,13 @@ const styles = {
   sectionTitle: {
     textAlign: 'center',
     marginBottom: '3rem',
-    fontSize: '2.25rem',
+    fontSize: '2.5rem',
     fontWeight: '700',
-    color: '#111827'
+    background: 'linear-gradient(135deg, #f8fafc, #e2e8f0, #cbd5e1)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    textShadow: '0 0 30px rgba(59, 130, 246, 0.3)'
   },
   grid: {
     display: 'grid',
@@ -130,78 +146,99 @@ const styles = {
     }
   },
   card: {
-    backgroundColor: '#ffffff',
-    border: '1px solid #e5e7eb',
+    background: 'rgba(15, 23, 42, 0.6)',
+    border: '1px solid rgba(59, 130, 246, 0.2)',
     borderRadius: '1rem',
     padding: '1.5rem',
-    boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
-    transition: 'all 0.2s ease'
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.1)',
+    transition: 'all 0.3s ease',
+    backdropFilter: 'blur(10px)',
+    position: 'relative',
+    overflow: 'hidden'
   },
   cardTitle: {
-    fontSize: '1.125rem',
+    fontSize: '1.25rem',
     fontWeight: '600',
-    color: '#111827',
+    color: '#f1f5f9',
     marginBottom: '1rem',
-    margin: '0 0 1rem 0'
+    margin: '0 0 1rem 0',
+    textShadow: '0 0 10px rgba(59, 130, 246, 0.3)'
   },
   button: {
     fontFamily: 'inherit',
     cursor: 'pointer',
     border: 'none',
-    borderRadius: '0.5rem',
+    borderRadius: '0.75rem',
     fontWeight: '500',
     fontSize: '0.875rem',
-    transition: 'all 0.2s ease',
+    transition: 'all 0.3s ease',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     textDecoration: 'none',
-    padding: '0.75rem 1.25rem'
+    padding: '0.75rem 1.25rem',
+    position: 'relative',
+    overflow: 'hidden',
+    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)'
   },
   buttonPrimary: {
-    backgroundColor: '#4f46e5',
-    color: '#ffffff'
+    background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+    color: '#ffffff',
+    border: '1px solid rgba(59, 130, 246, 0.3)',
+    boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
   },
   buttonGreen: {
-    backgroundColor: '#10b981',
-    color: '#ffffff'
+    background: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+    color: '#ffffff',
+    border: '1px solid rgba(6, 182, 212, 0.3)',
+    boxShadow: '0 4px 15px rgba(6, 182, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
   },
   buttonRed: {
-    backgroundColor: '#ef4444',
-    color: '#ffffff'
+    background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+    color: '#ffffff',
+    border: '1px solid rgba(239, 68, 68, 0.3)',
+    boxShadow: '0 4px 15px rgba(239, 68, 68, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
   },
   buttonGray: {
-    backgroundColor: '#6b7280',
-    color: '#ffffff'
+    background: 'linear-gradient(135deg, #64748b, #475569)',
+    color: '#ffffff',
+    border: '1px solid rgba(100, 116, 139, 0.3)',
+    boxShadow: '0 4px 15px rgba(100, 116, 139, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
   },
   buttonPurple: {
-    backgroundColor: '#8b5cf6',
-    color: '#ffffff'
+    background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+    color: '#ffffff',
+    border: '1px solid rgba(139, 92, 246, 0.3)',
+    boxShadow: '0 4px 15px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
   },
   input: {
     fontFamily: 'inherit',
-    border: '1px solid #e5e7eb',
-    borderRadius: '0.5rem',
+    border: '1px solid rgba(59, 130, 246, 0.3)',
+    borderRadius: '0.75rem',
     padding: '0.75rem 1rem',
     fontSize: '0.875rem',
-    backgroundColor: '#ffffff',
-    color: '#374151',
-    transition: 'all 0.2s ease',
+    backgroundColor: 'rgba(15, 23, 42, 0.6)',
+    color: '#e2e8f0',
+    transition: 'all 0.3s ease',
     width: '100%',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    backdropFilter: 'blur(10px)',
+    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.3)'
   },
   codeBlock: {
     fontFamily: '"JetBrains Mono", "Fira Code", Monaco, "Cascadia Code", monospace',
     fontSize: '0.875rem',
     lineHeight: '1.6',
-    color: '#374151',
-    backgroundColor: '#fafafa',
-    border: '1px solid #e5e7eb',
+    color: '#e2e8f0',
+    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+    border: '1px solid rgba(59, 130, 246, 0.2)',
     borderRadius: '0.75rem',
     padding: '1.5rem',
     overflowX: 'auto',
     margin: 0,
-    whiteSpace: 'pre-wrap'
+    whiteSpace: 'pre-wrap',
+    backdropFilter: 'blur(10px)',
+    boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.3)'
   },
   flexRow: {
     display: 'flex',
@@ -217,17 +254,21 @@ const styles = {
     textAlign: 'center'
   },
   textLarge: {
-    fontSize: '2.5rem',
+    fontSize: '3rem',
     fontWeight: '900',
-    color: '#111827',
+    background: 'linear-gradient(135deg, #60a5fa, #3b82f6)',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
     marginBottom: '1.5rem',
-    lineHeight: '1'
+    lineHeight: '1',
+    textShadow: '0 0 30px rgba(59, 130, 246, 0.5)'
   },
   textGray: {
-    color: '#6b7280'
+    color: '#cbd5e1'
   },
   textMuted: {
-    color: '#9ca3af',
+    color: '#94a3b8',
     fontSize: '0.875rem'
   },
   list: {
@@ -237,42 +278,61 @@ const styles = {
   },
   listItem: {
     marginBottom: '0.5rem',
-    color: '#6b7280'
+    color: '#cbd5e1',
+    position: 'relative',
+    paddingLeft: '1rem'
   },
   userCard: {
-    border: '1px solid #e5e7eb',
-    borderRadius: '0.5rem',
+    border: '1px solid rgba(59, 130, 246, 0.2)',
+    borderRadius: '0.75rem',
     padding: '1rem',
     cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    backgroundColor: '#ffffff'
+    transition: 'all 0.3s ease',
+    backgroundColor: 'rgba(15, 23, 42, 0.4)',
+    backdropFilter: 'blur(10px)'
   },
   userCardActive: {
-    borderColor: '#10b981',
-    backgroundColor: '#f0fdf4'
+    borderColor: '#06b6d4',
+    backgroundColor: 'rgba(6, 182, 212, 0.1)',
+    boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)'
   },
   badge: {
     display: 'inline-block',
-    padding: '0.25rem 0.5rem',
+    padding: '0.25rem 0.75rem',
     fontSize: '0.75rem',
-    borderRadius: '0.25rem'
+    borderRadius: '1rem',
+    fontWeight: '500'
   },
   badgeGreen: {
-    backgroundColor: '#dcfce7',
-    color: '#166534'
+    background: 'linear-gradient(135deg, #06b6d4, #0891b2)',
+    color: '#ffffff'
   },
   badgeGray: {
-    backgroundColor: '#f3f4f6',
-    color: '#374151'
+    background: 'linear-gradient(135deg, #64748b, #475569)',
+    color: '#ffffff'
   },
   footer: {
-    backgroundColor: '#ffffff',
-    borderTop: '1px solid #e5e7eb',
-    color: '#6b7280',
+    background: 'rgba(15, 23, 42, 0.8)',
+    borderTop: '1px solid rgba(59, 130, 246, 0.3)',
+    color: '#94a3b8',
     padding: '2rem 1.5rem',
     textAlign: 'center',
-    marginTop: '4rem'
+    marginTop: '4rem',
+    backdropFilter: 'blur(20px)'
   }
+};
+
+// Add hover effects
+const addHoverEffect = (element, hoverStyles) => {
+  const handleMouseEnter = () => {
+    Object.assign(element.style, hoverStyles);
+  };
+  
+  const handleMouseLeave = () => {
+    // Reset styles would go here
+  };
+  
+  return { onMouseEnter: handleMouseEnter, onMouseLeave: handleMouseLeave };
 };
 
 // UI Components
@@ -286,7 +346,17 @@ const Section = ({ title, children }) => (
 );
 
 const Card = ({ title, children, className = '' }) => (
-  <div style={styles.card}>
+  <div 
+    style={styles.card}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'translateY(-2px)';
+      e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.2)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'translateY(0px)';
+      e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.1)';
+    }}
+  >
     {title && <h3 style={styles.cardTitle}>{title}</h3>}
     {children}
   </div>
@@ -317,7 +387,7 @@ const Navigation = () => {
   return (
     <nav style={styles.nav}>
       <div style={styles.navContainer}>
-        <h1 style={styles.navTitle}>Poryecto Tres</h1>
+        <h1 style={styles.navTitle}>Proyecto Tres</h1>
         
         <div style={styles.navButtons}>
           {sections.map(section => (
@@ -327,6 +397,20 @@ const Navigation = () => {
               style={{
                 ...styles.navButton,
                 ...(state.activeSection === section.id ? styles.navButtonActive : {})
+              }}
+              onMouseEnter={(e) => {
+                if (state.activeSection !== section.id) {
+                  e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (state.activeSection !== section.id) {
+                  e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                }
               }}
             >
               {section.name}
@@ -409,10 +493,16 @@ const Props = () => {
         ...(isActive ? styles.userCardActive : {})
       }} 
       onClick={onToggle}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'scale(1.02)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'scale(1)';
+      }}
     >
-      <h4 style={{margin: '0 0 0.5rem 0', fontWeight: '600'}}>{name}</h4>
-      <p style={{margin: '0 0 0.25rem 0', color: '#6b7280'}}>{age} años</p>
-      <p style={{margin: '0 0 0.5rem 0', fontSize: '0.875rem', color: '#9ca3af'}}>{email}</p>
+      <h4 style={{margin: '0 0 0.5rem 0', fontWeight: '600', color: '#f1f5f9'}}>{name}</h4>
+      <p style={{margin: '0 0 0.25rem 0', color: '#cbd5e1'}}>{age} años</p>
+      <p style={{margin: '0 0 0.5rem 0', fontSize: '0.875rem', color: '#94a3b8'}}>{email}</p>
       <span style={{
         ...styles.badge,
         ...(isActive ? styles.badgeGreen : styles.badgeGray)
@@ -461,7 +551,13 @@ const Props = () => {
                 value={newName}
                 onChange={(e) => setNewName(e.target.value)}
                 placeholder="Nombre completo..."
-                style={styles.input}
+                style={{
+                  ...styles.input,
+                  ':focus': {
+                    borderColor: '#3b82f6',
+                    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)'
+                  }
+                }}
               />
               <input
                 type="number"
@@ -481,6 +577,16 @@ const Props = () => {
                   cursor: (!newName.trim() || !newAge.trim()) ? 'not-allowed' : 'pointer'
                 }}
                 disabled={!newName.trim() || !newAge.trim()}
+                onMouseEnter={(e) => {
+                  if (!e.currentTarget.disabled) {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+                }}
               >
                 Agregar Persona
               </button>
@@ -569,18 +675,42 @@ const State = () => {
                 <button
                   onClick={() => setCounter(counter - 1)}
                   style={{...styles.button, ...styles.buttonRed, flex: 1}}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(239, 68, 68, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(239, 68, 68, 0.3)';
+                  }}
                 >
                   -1
                 </button>
                 <button
                   onClick={() => setCounter(0)}
                   style={{...styles.button, ...styles.buttonGray, flex: 1}}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(100, 116, 139, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(100, 116, 139, 0.3)';
+                  }}
                 >
                   Reset
                 </button>
                 <button
                   onClick={() => setCounter(counter + 1)}
                   style={{...styles.button, ...styles.buttonGreen, flex: 1}}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(6, 182, 212, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(6, 182, 212, 0.3)';
+                  }}
                 >
                   +1
                 </button>
@@ -614,6 +744,14 @@ const State = () => {
               <button
                 onClick={addItem}
                 style={{...styles.button, ...styles.buttonPrimary}}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                }}
               >
                 Agregar
               </button>
@@ -624,11 +762,14 @@ const State = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  padding: '0.5rem',
-                  backgroundColor: '#f9fafb',
-                  borderRadius: '0.5rem'
+                  padding: '0.75rem',
+                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
+                  borderRadius: '0.75rem',
+                  backdropFilter: 'blur(10px)',
+                  transition: 'all 0.3s ease'
                 }}>
-                  <span>{item}</span>
+                  <span style={{color: '#e2e8f0'}}>{item}</span>
                   <button
                     onClick={() => removeItem(index)}
                     style={{
@@ -637,7 +778,16 @@ const State = () => {
                       border: 'none',
                       cursor: 'pointer',
                       fontWeight: 'bold',
-                      fontSize: '1.25rem'
+                      fontSize: '1.25rem',
+                      padding: '0.25rem',
+                      borderRadius: '50%',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
                     }}
                   >
                     ×
@@ -697,13 +847,15 @@ const Lifecycle = () => {
 
     return (
       <div style={{
-        border: '1px solid #bfdbfe',
-        borderRadius: '0.5rem',
+        border: '1px solid rgba(59, 130, 246, 0.3)',
+        borderRadius: '0.75rem',
         padding: '1rem',
-        backgroundColor: '#eff6ff'
+        background: 'rgba(59, 130, 246, 0.1)',
+        backdropFilter: 'blur(10px)',
+        transition: 'all 0.3s ease'
       }}>
-        <h4 style={{fontWeight: '600', margin: '0 0 0.5rem 0'}}>Componente #{id}</h4>
-        <p style={{fontSize: '0.875rem', color: '#6b7280', margin: 0}}>Estado: {status}</p>
+        <h4 style={{fontWeight: '600', margin: '0 0 0.5rem 0', color: '#f1f5f9'}}>Componente #{id}</h4>
+        <p style={{fontSize: '0.875rem', color: '#cbd5e1', margin: 0}}>Estado: {status}</p>
       </div>
     );
   };
@@ -729,12 +881,28 @@ const Lifecycle = () => {
                 <button
                   onClick={() => setComponentCount(prev => prev + 1)}
                   style={{...styles.button, ...styles.buttonGreen}}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(6, 182, 212, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(6, 182, 212, 0.3)';
+                  }}
                 >
                   Crear Componente
                 </button>
                 <button
                   onClick={() => setShowDemo(!showDemo)}
                   style={{...styles.button, ...styles.buttonPrimary}}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  }}
                 >
                   {showDemo ? 'Ocultar' : 'Mostrar'}
                 </button>
@@ -822,10 +990,18 @@ const Hooks = () => {
 
           <Card title="useState">
             <div style={styles.textCenter}>
-              <div style={{fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem'}}>{count}</div>
+              <div style={{fontSize: '2rem', fontWeight: 'bold', marginBottom: '1rem', color: '#60a5fa'}}>{count}</div>
               <button
                 onClick={() => setCount(count + 1)}
                 style={{...styles.button, ...styles.buttonPrimary}}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                }}
               >
                 Incrementar
               </button>
@@ -835,7 +1011,7 @@ const Hooks = () => {
           <Card title="useMemo">
             <div style={styles.textCenter}>
               <p style={styles.textGray}>Valor calculado:</p>
-              <div style={{fontSize: '1.25rem', fontWeight: 'bold'}}>{expensiveValue}</div>
+              <div style={{fontSize: '1.5rem', fontWeight: 'bold', color: '#60a5fa'}}>{expensiveValue}</div>
               <p style={styles.textMuted}>
                 Solo recalcula cuando count cambia
               </p>
@@ -853,6 +1029,14 @@ const Hooks = () => {
               <button
                 onClick={focusInput}
                 style={{...styles.button, ...styles.buttonPurple}}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(139, 92, 246, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(139, 92, 246, 0.3)';
+                }}
               >
                 Enfocar Input
               </button>
@@ -864,18 +1048,28 @@ const Hooks = () => {
               <button
                 onClick={fetchData}
                 style={{...styles.button, ...styles.buttonGreen}}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(6, 182, 212, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                  e.currentTarget.style.boxShadow = '0 4px 15px rgba(6, 182, 212, 0.3)';
+                }}
               >
                 Fetch Data
               </button>
               {data && (
                 <div style={{
                   padding: '0.75rem',
-                  backgroundColor: '#f9fafb',
-                  borderRadius: '0.5rem',
-                  fontSize: '0.875rem'
+                  background: 'rgba(59, 130, 246, 0.1)',
+                  border: '1px solid rgba(59, 130, 246, 0.2)',
+                  borderRadius: '0.75rem',
+                  fontSize: '0.875rem',
+                  backdropFilter: 'blur(10px)'
                 }}>
-                  <p style={{margin: '0 0 0.25rem 0'}}>ID: {data.id}</p>
-                  <p style={{margin: 0}}>Timestamp: {data.timestamp}</p>
+                  <p style={{margin: '0 0 0.25rem 0', color: '#e2e8f0'}}>ID: {data.id}</p>
+                  <p style={{margin: 0, color: '#e2e8f0'}}>Timestamp: {data.timestamp}</p>
                 </div>
               )}
             </div>
@@ -957,7 +1151,15 @@ const VirtualDOM = () => {
                 <span style={styles.textMuted}>Re-renders: {renderCount}</span>
                 <button
                   onClick={addItem}
-                  style={{...styles.button, ...styles.buttonPrimary, padding: '0.25rem 0.75rem', fontSize: '0.75rem'}}
+                  style={{...styles.button, ...styles.buttonPrimary, padding: '0.5rem 1rem', fontSize: '0.875rem'}}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  }}
                 >
                   Agregar Item
                 </button>
@@ -970,16 +1172,23 @@ const VirtualDOM = () => {
                     style={{
                       padding: '0.75rem',
                       border: '1px solid',
-                      borderColor: item.active ? '#10b981' : '#e5e7eb',
-                      backgroundColor: item.active ? '#f0fdf4' : '#ffffff',
-                      borderRadius: '0.5rem',
+                      borderColor: item.active ? '#06b6d4' : 'rgba(59, 130, 246, 0.2)',
+                      backgroundColor: item.active ? 'rgba(6, 182, 212, 0.1)' : 'rgba(59, 130, 246, 0.05)',
+                      borderRadius: '0.75rem',
                       cursor: 'pointer',
-                      transition: 'all 0.2s ease'
+                      transition: 'all 0.3s ease',
+                      backdropFilter: 'blur(10px)'
                     }}
                     onClick={() => toggleItem(item.id)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.02)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
                   >
                     <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                      <span>{item.text}</span>
+                      <span style={{color: '#e2e8f0'}}>{item.text}</span>
                       <span style={{
                         ...styles.badge,
                         ...(item.active ? styles.badgeGreen : styles.badgeGray)
@@ -1065,6 +1274,14 @@ const Redux = () => {
                 <button
                   onClick={addTodo}
                   style={{...styles.button, ...styles.buttonPrimary}}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0px)';
+                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(59, 130, 246, 0.3)';
+                  }}
                 >
                   Agregar
                 </button>
@@ -1080,12 +1297,14 @@ const Redux = () => {
                       justifyContent: 'space-between',
                       padding: '0.75rem',
                       border: '1px solid',
-                      borderColor: todo.completed ? '#10b981' : '#e5e7eb',
-                      backgroundColor: todo.completed ? '#f0fdf4' : '#ffffff',
-                      borderRadius: '0.5rem'
+                      borderColor: todo.completed ? '#06b6d4' : 'rgba(59, 130, 246, 0.2)',
+                      backgroundColor: todo.completed ? 'rgba(6, 182, 212, 0.1)' : 'rgba(59, 130, 246, 0.05)',
+                      borderRadius: '0.75rem',
+                      backdropFilter: 'blur(10px)',
+                      transition: 'all 0.3s ease'
                     }}
                   >
-                    <span style={todo.completed ? {textDecoration: 'line-through', color: '#6b7280'} : {}}>
+                    <span style={todo.completed ? {textDecoration: 'line-through', color: '#94a3b8'} : {color: '#e2e8f0'}}>
                       {todo.text}
                     </span>
                     <div style={styles.flexRow}>
@@ -1094,8 +1313,14 @@ const Redux = () => {
                         style={{
                           ...styles.button,
                           ...(todo.completed ? styles.buttonGray : styles.buttonGreen),
-                          padding: '0.25rem 0.5rem',
+                          padding: '0.5rem 0.75rem',
                           fontSize: '0.75rem'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-1px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0px)';
                         }}
                       >
                         {todo.completed ? 'Deshacer' : 'Completar'}
@@ -1105,8 +1330,14 @@ const Redux = () => {
                         style={{
                           ...styles.button,
                           ...styles.buttonRed,
-                          padding: '0.25rem 0.5rem',
+                          padding: '0.5rem 0.75rem',
                           fontSize: '0.75rem'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-1px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0px)';
                         }}
                       >
                         Eliminar
@@ -1117,12 +1348,12 @@ const Redux = () => {
               </div>
               
               {state.todos.length === 0 && (
-                <p style={{...styles.textGray, textAlign: 'center', padding: '1rem 0'}}>No hay tareas</p>
+                <p style={{...styles.textGray, textAlign: 'center', padding: '2rem 0'}}>No hay tareas</p>
               )}
               
               <div style={{
                 ...styles.textMuted,
-                borderTop: '1px solid #e5e7eb',
+                borderTop: '1px solid rgba(59, 130, 246, 0.2)',
                 paddingTop: '0.75rem'
               }}>
                 Total: {state.todos.length} | 
@@ -1177,7 +1408,7 @@ const Footer = () => {
   return (
     <footer style={styles.footer}>
       <div style={{maxWidth: '72rem', margin: '0 auto', padding: '0 1.5rem'}}>
-        <p style={{margin: 0}}>
+        <p style={{margin: 0, color: '#94a3b8'}}>
           © 2024 React Guide - Aprende React paso a paso
         </p>
       </div>
